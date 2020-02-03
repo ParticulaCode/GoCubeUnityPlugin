@@ -32,17 +32,13 @@ Start by choosing File -> New Scene, and save it as `GoCubeConnectionScene`.  Al
 
 ### Using GoCube Objects
 
+Unfortunately, SDK is only supported in C# at the moment.
+
 The previous scene will handle GoCube connections.  After a GoCube is connected, your project has access to it through the `GoCubeProvider` singleton class.  Access them by this call:
 
 C#
-
 	IOnlineCube connectedGoCube = GoCubeProvider.GetProvider().GetConnectedGoCube();
 
-JavaScript
-
-
-	var connectedGoCube : IOnlineCube;
-	connectedgocube = GoCubeProvider.GetProvider().GetConnectedGoCube();
 		
 This parameter will be null if no GoCube is connected.
 
@@ -50,12 +46,12 @@ This parameter will be null if no GoCube is connected.
 
 These functions will operate fine on both mobile platforms.  
 
-**Open GoCube led patterns (C# and JavaScript):**
+**Open GoCube led patterns (C#):**
 
 	// Open GoCube leds (pattern 1)
 	connectedGoCube.PlayLedPattern(LedPattern.Pattern1);
   
-**Get whether the cube is solved or not (C# and JavaScript):**
+**Get whether the cube is solved or not (C#):**
 
 	// Get if the cube is solved or not
 	connectedGoCube.IsSolved()  
