@@ -32,11 +32,12 @@ Start by choosing File -> New Scene, and save it as `GoCubeConnectionScene`.  Al
 
 ### Using GoCube Objects
 
-Unfortunately, SDK is only supported in C# at the moment.
+Unfortunately, this SDK is only supported in C# at the moment.
 
 The previous scene will handle GoCube connections.  After a GoCube is connected, your project has access to it through the `GoCubeProvider` singleton class.  Access them by this call:
 
 C#
+	
 	IOnlineCube connectedGoCube = GoCubeProvider.GetProvider().GetConnectedGoCube();
 
 		
@@ -56,7 +57,7 @@ These functions will operate fine on both mobile platforms.
 	// Get if the cube is solved or not
 	connectedGoCube.IsSolved()  
 	
-There are more commands that you can check out in the Sphero class. 
+There are more commands that you can check out in the IOnlineCube class. 
 
 #### Notifications, Asynchronous Messaging, and Responses
 
@@ -67,21 +68,19 @@ The way to do it is to register to the cube rotations event:
 	
 Remember to unregister for the notification when you no longer need it.
 
-	connectedGoCube.afterRotation 0= RotationEvent;
+	connectedGoCube.afterRotation -= RotationEvent;
 
-Receive the data and do what you want with it.  Every message has the unique face id that has rotated.
+Receive the data and do whatever you like with it.  Every message has the unique face id that has rotated.
 
 	private void RotationEvent(Rotation rot)
   {
       // You can do your stuff here....
   }
 
-For a walkthrough of the asynchronous message handling, see the SensorStreaming example.
-
 ## License
 
 ---
-The GoCube Unity Plugin is distributed under the Particula Source Code License.  Developers are encouraged to help build the plugin and make pull requests to our main Github repository.
+The GoCube Unity Plugin is distributed under the ParticulaCode Source Code License.  Developers are encouraged to help build the plugin and make pull requests to our main Github repository.
 
 ## Community and Help
 
