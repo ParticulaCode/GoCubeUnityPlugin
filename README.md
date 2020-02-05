@@ -20,7 +20,7 @@ The GoCube Unity Plugin is a group of C# classes that form a bridge between Unit
 
 Open up Unity and start by choosing File -> New Project.
 
-Next, drag the `BLE`, `Particula`, `Plugins` and `TextMesh Pro`  directories from `GoCubeUnityPlugin` into your Unity Project.
+Next, drag the `BLE`, `Particula` and `Plugins`  directories from `GoCubeUnityPlugin` into your Unity Project.
 
 ### GoCube Connection
 
@@ -72,10 +72,10 @@ Remember to unregister for the notification when you no longer need it.
 
 Receive the data and do whatever you like with it.  Every message has the unique face id that has rotated.
 
-	private void RotationEvent(Rotation rot)
-  {
-      // You can do your stuff here....
-  }
+	private void RotationEvent(Rotation rot) 
+	{
+		// You can do your stuff here....
+	}
 
 ## License
 
