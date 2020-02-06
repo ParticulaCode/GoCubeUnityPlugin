@@ -12,7 +12,11 @@ The GoCube Unity Plugin is a group of C# classes that form a bridge between Unit
 
 ---
 
-* [Test Scene](https://github.com/ParticulaCode/GoCubeAPI/Assets/Sample Scenes/GoCubeTestScene) - Connect to GoCube, display a virtual cube that is a mirror of the physical cube. The sample contains some easy API calls.
+* GoCubeExampleSDK - Connect to a GoCube, then it will display a virtual cube that is a mirror of the physical cube. The sample contains some easy API calls.
+
+Just open a Unity project and select the folder that contains the 'Assets' and 'ProjectSettings' folders.
+Open the GoCubeConnectionScene scene (switch to Android or iOS platform) and run the example.
+NOTE: You must run the project in debug mode ("Development Build" checked)
 	
 ## Adding GoCube to a New or Existing Project
 
