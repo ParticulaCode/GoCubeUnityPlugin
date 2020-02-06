@@ -62,6 +62,7 @@ These functions will operate fine on both mobile platforms.
 	connectedGoCube.IsSolved()  
 	
 There are more commands that you can check out in the IOnlineCube class. 
+The full documentations is in `/Assets/Plugins/Particula/Particula.GoCube.xml`
 
 #### Notifications, Asynchronous Messaging, and Responses
 
