@@ -4,7 +4,7 @@
 
 ---
 
-The GoCube Unity Plugin is a group of C# classes that form a bridge between Unity and our native Android™ and iOS™. Unity can call down into each platform's native code for GoCube commands and receive callbacks from native code up into Unity.  The easiest way to get going with the plugin is by starting with one of the samples we have created.
+The GoCube Unity Plugin is a group of C# classes that form a bridge between Unity and our native Android™ and iOS™. Unity can call down into each platform's native code for GoCube commands and receive callbacks from native code up into Unity.  The easiest way to get going with the plugin is by starting with the sample we have created.
 
 	Notice: The GoCube Unity Plugin only works with Android and iOS.
 	
@@ -12,7 +12,7 @@ The GoCube Unity Plugin is a group of C# classes that form a bridge between Unit
 
 ---
 
-* GoCubeExampleSDK - Connect to a GoCube, then it will display a virtual cube that is a mirror of the physical cube. The sample contains some easy API calls.
+Connect to a GoCube, then it will display a virtual cube that is a mirror of the physical cube. The sample contains some easy API calls.
 
 Just open a Unity project and select the folder that contains the 'Assets' and 'ProjectSettings' folders.
 Open the GoCubeConnectionScene scene (switch to Android or iOS platform) and run the example.
@@ -32,7 +32,7 @@ We have created scripts for you that handle the connection of a GoCube on iOS an
 
 Start by choosing File -> New Scene, and save it as `GoCubeConnectionScene`.  All you need to do is locate the `GoCubeConnection` prefab that is in the `Assets/Particula/Prefabs` directory in your project.  Drag the prefab into the scene.  
 
-*Note* - The `Next Scene` is a string of the name of the scene that you want Unity to load after the GoCubeConnectionScene is done.  It will proceed to the scene after it connects to GoCube.   
+*Note* - The `Next Scene` game object is a string of the name of the scene that you want Unity to load after the GoCubeConnectionScene is done.  It will proceed to the scene after it connects to GoCube.   
 
 ### Using GoCube Objects
 
@@ -86,8 +86,6 @@ Receive the data and do whatever you like with it.  Every message has the unique
 
 ---
 The GoCube Unity Plugin is distributed under the ParticulaCode Source Code License.
-
-## Community and Help
 
 ---
 
