@@ -16,7 +16,6 @@ Connect to a GoCube, then it will display a virtual cube that is a mirror of the
 
 Just open a Unity project and select the folder that contains the 'Assets' and 'ProjectSettings' folders.
 Open the GoCubeConnectionScene scene (switch to Android or iOS platform) and run the example.
-NOTE: You must run the project in debug mode ("Development Build" checked)
 	
 ## Adding GoCube to a New or Existing Project
 
