@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Particula.GoCube</name>
+    </assembly>
+    <members>
+        <member name="T:Particula.CubeStatics">
+            <summary>
+            Static functions used in various cube operations
+            </summary>
+        </member>
+        <member name="M:Particula.CubeStatics.StepToAngle(System.Int32)">
+            <summary>
+            <para>The physical cube sends a rotation state as an integer that defines the degrees of axis rotation,</para>
+            <para>transforms step integer to a floating point 360 based rotation</para>
+            </summary>
+            <param name="step">Step to transform</param>
+            <returns>Angle of the transform step(After rounding)</returns>
+        </member>
+        <member name="M:Particula.CubeStatics.AngleToStep(System.Single)">
+            <summary>
+            <para>The physical cube sends a rotation state as an integer that defines the degrees of axis rotation,</para>
+            <para>transforms floating point 360 based rotation to step integer</para>
+            </summary>
+            <param name="angle">Angle to be transformed</param>
+            <returns>Step of that given angle (Rounded)</returns>
+        </member>
+        <member name="M:Particula.CubeStatics.SymetricalIndexTransform(System.Int32,System.Int32)">
+            <summary>
+            <para>Transforms an index to a symetrical in which every face is "facing" a different face,</para>
+            <para>used to determin relative cube state, in relation to an arbitrary face.</para>
+            <para>    |789|        </para>
+            <para>    |456|        </para>
+            <para>    |123|        </para>
+            <para> ---+---+------- </para>
+            <para> 789|147|123|369 </para>
+            <para> 456|258|456|258 </para>
+            <para> 123|369|789|147 </para>
+            <para> ---+---+------- </para>
+            <para>    |987|        </para>
+            <para>    |654|        </para>
+            <para>    |321|        </para>
+            </summary>
+            <param name="face"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Particula.Rotation">
+            <summary>
+            Standard notation rotations enum
+            </summary>
+        </member>
+        <member name="T:Particula.Direction">
+            <summary>
+            GoCube standardized face to face index
+            </summary>
+        </member>
+        <member name="T:Particula.LedPattern">
+            <summary>
+            Possible led patterns for GoCube
+            </summary>
+        </member>
+        <member name="T:Particula.GoCube">
+            <summary>
+            GoCube hub class
+            </summary>
+        </member>
+        <member name="M:Particula.GoCube.Init(Particula.IBluetooth)">
+            <summary>
+            Initialize GoCube with a Bluetooth component
+            </summary>
+            <param name="bluetooth">Bluetooth component that will handle comunication with the cube</param>
+        </member>
+        <member name="M:Particula.GoCube.GetCubes(System.Action{System.Collections.Generic.IEnumerable{Particula.ICubeData}})">
+            <summary>
+            Get all the cubes that are currently operating in bluetooth space
+            </summary>
+            <param name="callback">Callback for when the bluetooth component finds cubes</param>
+        </member>
+        <member name="M:Particula.GoCube.ConnectToCube(Particula.ICubeData,System.Action{Particula.IOnlineCube})">
+            <summary>
+            Connect to a cube
+            </summary>
+            <param name="cubeData">Which cube should be connected</param>
+            <param name="callback">Called once the cube is connected and the underlying data structure is ready</param>
+        </member>
+        <member name="M:Particula.GoCube.GetOfflineCube">
+            <summary>
+            Get an offline cube for manual manipulation
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Particula.ICubeData">
+            <summary>
+            Basic cube data
+            </summary>
+        </member>
+        <member name="P:Particula.ICubeData.id">
+            <summary>
+            Id of the cube
+            </summary>
+        </member>
+        <member name="P:Particula.ICubeData.name">
+            <summary>
+            Name of the cube
+            </summary>
+        </member>
+        <member name="T:Particula.IPiece">
+            <summary>
+            Cube piece, will be either IFace, IEdge or ICorner
+            </summary>
+        </member>
+        <member name="P:Particula.IPiece.inPlace">
+            <summary>
+            Is the piece currently in its correct place, might be of incorrect orientation
+            </summary>
+        </member>
+        <member name="P:Particula.IPiece.isMatching">
+            <summary>
+            Is one of the colors matches the correct face
+            </summary>
+        </member>
+        <member name="P:Particula.IPiece.inPosition">
+            <summary>
+            Is this piece in the correct position and orientation
+            </summary>
+        </member>
+        <member name="M:Particula.IPiece.GetColor(System.Byte)">
+            <summary>
+            Get the color facing the given face id
+            </summary>
+            <param name="face">Face id of the wanted direction</param>
+            <returns>Face id on the color facing the given direction, returns -1 if the piece is not situated on the given direction</returns>
+        </member>
+        <member name="M:Particula.IPiece.Is(System.Byte)">
+            <summary>
+            Checks if the one of this piece's colors match the given clor id
+            </summary>
+            <param name="id">Color id to check</param>
+            <returns>True if one of this piece's colors match the given color id, false otherwise</returns>
+        </member>
+        <member name="M:Particula.IPiece.IsFacing(System.Byte)">
+            <summary>
+            Checks if this piece is situated on the given face, denoted by its face id
+            </summary>
+            <param name="id">Face id to check</param>
+            <returns>True if the piece is currently facing the given face id, false otherwise</returns>
+        </member>
+        <member name="M:Particula.IPiece.ComparePiece(Particula.IPiece)">
+            <summary>
+            Make a total color comparison to with another piece, used to compare pieces between different cubes
+            </summary>
+            <param name="other">The piece to check</param>
+            <returns>True if the given piece matches in color with this piece</returns>
+        </member>
+        <member name="M:Particula.IPiece.ReadableFacing">
+            <summary>
+            Returns a string showing which face every direction is facing
+            </summary>
+            <returns>Current facing of this peice</returns>
+        </member>
+        <member name="M:Particula.IPiece.ReadableColors">
+            <summary>
+            Returns the colors of this piece in a reable format
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Particula.IFace">
+            <summary>
+            Face piece
+            </summary>
+        </member>
+        <member name="P:Particula.IFace.id">
+            <summary>
+            Color of this face
+            </summary>
+        </member>
+        <member name="P:Particula.IFace.absoluteOrientation">
+            <summary>
+            Current absolute orientation, last 90 degrees rotated to, possible value = 0, 90, 180, 270
+            </summary>
+        </member>
+        <member name="P:Particula.IFace.orientation">
+            <summary>
+            Current orientation, might by an absolute angle or a step in between
+            </summary>
+        </member>
+        <member name="P:Particula.IFace.isSolved">
+            <summary>
+            Is the face fully solved currently
+            </summary>
+        </member>
+        <member name="P:Particula.IFace.stateHash">
+            <summary>
+            Gets a hash representing the unique state of this face
+            </summary>
+        </member>
+        <member name="E:Particula.IFace.onRotation">
+            <summary>
+            Called when the face has fully rotated to a different absolute orientation, value sent represents if the rotation was in reverse
+            </summary>
+        </member>
+        <member name="E:Particula.IFace.onOrientationChanged">
+            <summary>
+            Called when the orientation of the face changed, value sent is the new angle
+            </summary>
+        </member>
+        <member name="E:Particula.IFace.onEdgesChanged">
+            <summary>
+            Called when the edges have changed, because the face rotated, a neighbor rotated or when a full state has been set
+            </summary>
+        </member>
+        <member name="E:Particula.IFace.onResetOrientation">
+            <summary>
+            <para>Called when the orientation has been set on the face and the new orientation doesnt represent a mooth transition of the face</para>
+            <para>to the new orientation, but a jump to the new orientation, happens when a full state was set on the cube</para>
+            <para>the value sent is the new orientation that the face jumped to</para>
+            </summary>
+        </member>
+        <member name="M:Particula.IFace.GetEdge(System.Int32)">
+            <summary>
+            <para>Gets an edge associated with this face, denoted by the index.</para>
+            <para>GoCube standard indecies:</para>
+            <para> 0 | 1 | 2 </para>
+            <para> 7 | _ | 3 </para>
+            <para> 6 | 5 | 4 </para>
+            <para>an edge or a corner piece will be associated with multiple faces.</para>
+            </summary>
+            <param name="index">Index to retrieve</param>
+            <returns>Piece in the give index</returns>
+        </member>
+        <member name="T:Particula.IEdge">
+            <summary>
+            Edge piece
+            </summary>
+        </member>
+        <member name="T:Particula.ICorner">
+            <summary>
+            Corner Piece
+            </summary>
+        </member>
+        <member name="T:Particula.ICube">
+            <summary>
+            Underlying cube interface
+            </summary>
+        </member>
+        <member name="P:Particula.ICube.orientation">
+            <summary>
+            Rotation in space, as a quaternion
+            </summary>
+        </member>
+        <member name="P:Particula.ICube.pieces">
+            <summary>
+            All the pieces involved in this cube
+            </summary>
+        </member>
+        <member name="P:Particula.ICube.faces">
+            <summary>
+            Faces of this cube
+            </summary>
+        </member>
+        <member name="E:Particula.ICube.afterRotation">
+            <summary>
+            Event that is called after the cube hase rotated one of this faces
+            </summary>
+        </member>
+        <member name="E:Particula.ICube.beforeFullState">
+            <summary>
+            Event calledd before a full state is going to be applied
+            </summary>
+        </member>
+        <member name="E:Particula.ICube.afterFullState">
+            <summary>
+            Event called after the full state has been applied
+            </summary>
+        </member>
+        <member name="M:Particula.ICube.TriangulatePosition(Particula.IPiece)">
+            <summary>
+            Triagulate a piece's correct postion, and return the piece that currently resides in that position
+            </summary>
+            <param name="piece">Piece to triagulate</param>
+            <returns>Piece in the given piece's currect position</returns>
+        </member>
+        <member name="M:Particula.ICube.TriangulatePosition(System.Byte,System.Nullable{System.Byte},System.Nullable{System.Byte})">
+            <summary>
+            Same as above, but the piece is denoted by its colors instead
+            </summary>
+        </member>
+        <member name="M:Particula.ICube.GetHash">
+            <summary>
+            Gets unique hash for the cube's current state
+            </summary>
+            <returns>int[6] in which each integer denotes the state of that face</returns>
+        </member>
+        <member name="M:Particula.ICube.IsSolved">
+            <summary>
+            Is this cube solved
+            </summary>
+            <returns>True if all the piece of the cube are situated in their correct position, False otherwise</returns>
+        </member>
+        <member name="M:Particula.ICube.GetFullState">
+            <summary>
+            Gets a full state data block that can be used to transfer the state of this cube to another cube object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Particula.IOnlineCube">
+            <summary>
+            A cube object that is connected to the physical cube, will always mimic the physical cube's state
+            </summary>
+        </member>
+        <member name="P:Particula.IOnlineCube.batteryPercent">
+            <summary>
+            Get the battery state of the physical cube
+            </summary>
+        </member>
+        <member name="P:Particula.IOnlineCube.isEdgeCube">
+            <summary>
+            Check if the cube is an Edge Cube
+            </summary>
+        </member>
+        <member name="P:Particula.IOnlineCube.IMUState">
+            <summary>
+            Is the IMU currently enabled
+            </summary>
+        </member>
+        <member name="M:Particula.IOnlineCube.GetOfflineStats(System.Action{Particula.OfflineStatsData})">
+            <summary>
+            Get the offline stats of the cube
+            </summary>
+            <param name="cb">Called one the offline stats have arrived from the cube</param>
+        </member>
+        <member name="M:Particula.IOnlineCube.PlayLedPattern(Particula.LedPattern)">
+            <summary>
+            Play a led pattern on the cube
+            </summary>
+            <param name="pattern">The pattern to play</param>
+        </member>
+        <member name="M:Particula.IOnlineCube.ResetCube">
+            <summary>
+            Play a led pattern on the cube
+            </summary>
+        </member>
+        <member name="T:Particula.IOfflineCube">
+            <summary>
+            A cube object that is not connected to the physical cube, and can be manually manipulated
+            </summary>
+        </member>
+        <member name="P:Particula.IOfflineCube.orientation">
+            <summary>
+            get; set; the orientation of the cube
+            </summary>
+        </member>
+        <member name="M:Particula.IOfflineCube.Rotate(Particula.Rotation)">
+            <summary>
+            Perform rotation action denoted by the Rotation enum
+            </summary>
+            <param name="rotation">The rotation to perform, only basic rotations are currently supported i.e. R, R`, L, L` ...</param>
+        </member>
+        <member name="M:Particula.IOfflineCube.HandleFullState(Particula.FullStateData)">
+            <summary>
+            Set the state of this cube based on a FullStateData from another cube
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:Particula.IBluetooth">
+            <summary>
+            General bluetooth interface that can retrive devices and connect to a cube
+            </summary>
+        </member>
+        <member name="M:Particula.IBluetooth.ScanForPeripherals(System.String[],System.Action{Particula.IPeripheral})">
+            <summary>
+            Scan for peripherals with a specific service id.
+            </summary>
+            <param name="serviceIds">Service ids to filter</param>
+            <param name="onPeripheralFound">Called everytime a perpheral is found</param>
+        </member>
+        <member name="M:Particula.IBluetooth.StopScan">
+            <summary>
+            Stop scanning peripherals
+            </summary>
+        </member>
+        <member name="T:Particula.IPeripheral">
+            <summary>
+            Represents a connected bluetooth device
+            </summary>
+        </member>
+        <member name="P:Particula.IPeripheral.id">
+            <summary>
+            Bluetooth id of the device
+            </summary>
+        </member>
+        <member name="P:Particula.IPeripheral.name">
+            <summary>
+            Name of the device
+            </summary>
+        </member>
+        <member name="E:Particula.IPeripheral.characteristicDiscovered">
+            <summary>
+            Called when a characteristic has been discovered
+            </summary>
+        </member>
+        <member name="M:Particula.IPeripheral.Connect">
+            <summary>
+            Connect to the peripheral
+            </summary>
+        </member>
+        <member name="M:Particula.IPeripheral.Disconnect">
+            <summary>
+            Disconnect peripheral
+            </summary>
+        </member>
+        <member name="M:Particula.IPeripheral.SubscribeToCharacteristic(System.String,System.String,System.Action{Particula.ICharacteristic})">
+            <summary>
+            Subscribe to a characteristic on the peripheral
+            </summary>
+            <param name="service">The to which the characteristic is associated with</param>
+            <param name="characteristic">The characteristic id</param>
+            <param name="callback">Called when the characteristic is subscribedd to</param>
+        </member>
+        <member name="T:Particula.ICharacteristic">
+            <summary>
+            Inteface for a bluetooth characteristic
+            </summary>
+        </member>
+        <member name="P:Particula.ICharacteristic.id">
+            <summary>
+            id of the characteristic
+            </summary>
+        </member>
+        <member name="E:Particula.ICharacteristic.onData">
+            <summary>
+            Called when the characteristic received data
+            </summary>
+        </member>
+        <member name="M:Particula.ICharacteristic.Publish(System.Byte[])">
+            <summary>
+            Pulish data to the characteristic
+            </summary>
+            <param name="data">The data to publish</param>
+        </member>
+        <member name="T:Particula.FullStateData">
+            <summary>
+            Full cube stated created from a Cube, can be used to copy state between cubes
+            </summary>
+        </member>
+        <member name="T:Particula.Quat">
+            <summary>
+            A representation of a 3d rotation in 4d.
+            </summary>
+        </member>
+        <member name="T:Particula.EnumConverter">
+            <summary>
+            Utility functions for conversions of the Rotation enum
+            </summary>
+        </member>
+    </members>
+</doc>
