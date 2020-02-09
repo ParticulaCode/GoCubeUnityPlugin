@@ -1,0 +1,552 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Polymorph.Unity</name>
+    </assembly>
+    <members>
+        <member name="T:Polymorph.Unity.GenericButton">
+            <summary>
+            A generic button that sends a specific signal to a ViewModel that implements IClickReceiver
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.GenericButton.eventName">
+            <summary>
+            Name of the event that this button sends
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.MVVMButton">
+            <summary>
+            A View like UnityEngine Button
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.MVVMButton.ActionType">
+            <summary>
+            Which action should be taken when the button is clicked
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.MVVMButton.ActionType.SelfAction">
+            <summary>
+            SelfAction invokes the onClick of the button
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.MVVMButton.ActionType.ViewModel">
+            <summary>
+            ViewModel sends a signal to the based on the deriving class
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.MVVMButton.ActionType.Both">
+            <summary>
+            Sends Both SelfAction and ViewModel
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.MVVMButton.actionType">
+            <summary>
+            Action type that should taken once the button is clicked
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.MVVMButton.viewModel">
+            <summary>
+            Current ViewModel storage
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.MVVMButton.ViewModelChanged(Polymorph.Unity.MVVM.ViewModel)">
+            <summary>
+            View-like ViewModelChanged
+            </summary>
+            <param name="m">New ViewModel</param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVMButton.OnPointerClick(UnityEngine.EventSystems.PointerEventData)">
+            <summary>
+            Receiver of the click from UnityEngine.EventSystems
+            </summary>
+            <param name="eventData"></param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVMButton.DoAction">
+            <summary>
+            Called on a PointerClick event, can be called manually from another event by a derived class
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.IClickReciever">
+            <summary>
+            An interface from ViewModels that canm handle a generic OnClick event from buttons
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.IClickReciever.OnClick(System.String)">
+            <summary>
+            On Click signal
+            </summary>
+            <param name="eventName">The name of the signal</param>
+        </member>
+        <member name="T:Polymorph.Unity.BasePool`1">
+            <summary>
+            Base class from pools
+            </summary>
+            <typeparam name="T">The type of the prototype</typeparam>
+        </member>
+        <member name="F:Polymorph.Unity.BasePool`1.proto">
+            <summary>
+            The prototype object that will be instantiated when an element is required
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.BasePool`1.poolParent">
+            <summary>
+            The parent of the inactive elements
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.BasePool`1._contentParent">
+            <summary>
+            The parent of the active elements
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.BasePool`1.pool">
+            <summary>
+            All the inactive elements in the pool
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.BasePool`1.active">
+            <summary>
+            All the active elemets in the pool
+            </summary>
+        </member>
+        <member name="P:Polymorph.Unity.BasePool`1.Item(System.Int32)">
+            <summary>
+            Returns an active element at the given index
+            </summary>
+            <param name="i">The index to retrieve</param>
+            <returns>The requested element</returns>
+        </member>
+        <member name="P:Polymorph.Unity.BasePool`1.length">
+            <summary>
+            The amount of active elements in the pool
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.BasePool`1.worldPositionStays">
+            <summary>
+            Should the parented element keep its position, or should it go to its current position in the parent
+            </summary>
+        </member>
+        <member name="P:Polymorph.Unity.BasePool`1.contentParent">
+            <summary>
+            The content parent RectTransform;
+            </summary>
+        </member>
+        <member name="P:Polymorph.Unity.BasePool`1.initialized">
+            <summary>
+            Has the pool been initialized;
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.HandleCreation">
+            <summary>
+            Handle creation of the element from scratch using the proto
+            </summary>
+            <returns>Created element</returns>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.HandleParenting(`0,UnityEngine.Transform)">
+            <summary>
+            Handle parenting with the contentParent
+            </summary>
+            <param name="ele">The element that need parenting handled</param>
+            <param name="parent">The parent to be coupled to</param>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.HandleDestruction(`0)">
+            <summary>
+            Handle destruction of an element
+            </summary>
+            <param name="ele">Element to be destroyed</param>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.Init(System.Boolean,System.Boolean)">
+            <summary>
+            Should be called before any operation on the pool is performed, mainly ensures the state of the objects in the pool
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.GetElement">
+            <summary>
+            Get an element from the pool, or create a new element if the pool is empty
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.ReturnToPool(System.Object)">
+            <summary>
+            Return an element to the pool, remove it from active duty
+            </summary>
+            <param name="ele">The element to return</param>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.ClearActives">
+            <summary>
+            Clear all the active elements, make them ready to be resused if needed.
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.ResetPool">
+            <summary>
+            Clears all the active and inactive elements from the pool.
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.Setup(`0,UnityEngine.Transform,UnityEngine.Transform)">
+            <summary>
+            Sets all the neccessary objects from code
+            </summary>
+            <param name="proto">The prototype to be used</param>
+            <param name="contentParent">The content parent to be used</param>
+            <param name="poolParent">The pool parent to be used</param>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.SetupProto(`0)">
+            <summary>
+            Sets the prototype field from code.
+            </summary>
+            <param name="proto">The prototype to be used</param>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.SetupParent(UnityEngine.Transform)">
+            <summary>
+            Sets the content parent content from code.
+            </summary>
+            <param name="parent">The content parent to be used</param>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.SetupPool(UnityEngine.Transform)">
+            <summary>
+            Sets the pool parent from code.
+            </summary>
+            <param name="poolParent">The pool parent to be used</param>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.PlaceProtoInPool">
+            <summary>
+            Places the prototype in the pool, at an inactive state
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.BasePool`1.GetEnumerator">
+            <summary>
+            Enumerate through the active elements in the pool.
+            </summary>
+            <returns>All active elements</returns>
+        </member>
+        <member name="T:Polymorph.Unity.Pool`1">
+            <summary>
+            A generic pool for MonoBehaviour elements
+            </summary>
+            <typeparam name="T">The type of the pototype object of the pool</typeparam>
+        </member>
+        <member name="M:Polymorph.Unity.Pool`1.HandleCreation">
+            <summary>
+            Called by BasePool when a creation of a element is required
+            </summary>
+            <returns>A new element inside the parent</returns>
+        </member>
+        <member name="M:Polymorph.Unity.Pool`1.HandleParenting(`0,UnityEngine.Transform)">
+            <summary>
+            Called from the BasePool when an element needs to be parented to another.
+            </summary>
+            <param name="ele">Which element should be parented</param>
+            <param name="parent">To which parent</param>
+        </member>
+        <member name="M:Polymorph.Unity.Pool`1.HandleDestruction(`0)">
+            <summary>
+            Called by BasePool when an element needs to be destroyed.
+            </summary>
+            <param name="ele">Which element should be destroyed</param>
+        </member>
+        <member name="T:Polymorph.Unity.Pool">
+            <summary>
+            A specialized pool for gameobjects.
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.Pool.HandleCreation">
+            <summary>
+            Called by BasePool when a creation of a element is required
+            </summary>
+            <returns>A new element inside the parent</returns>
+        </member>
+        <member name="M:Polymorph.Unity.Pool.HandleParenting(UnityEngine.GameObject,UnityEngine.Transform)">
+            <summary>
+            Called from the BasePool when an element needs to be parented to another.
+            </summary>
+            <param name="ele">Which element should be parented</param>
+            <param name="parent">To which parent</param>
+        </member>
+        <member name="M:Polymorph.Unity.Pool.HandleDestruction(UnityEngine.GameObject)">
+            <summary>
+            Called by BasePool when an element needs to be destroyed.
+            </summary>
+            <param name="ele">Which element should be destroyed</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Polymorph.Unity.PoolItemView" -->
+        <member name="T:Polymorph.Unity.SceneBackButton">
+            <summary>
+            Standard back button for unity apps that sends the SceneViewModel the GoBack signal
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneBackButton.Update">
+            <summary>
+            Overridable entry point for UnityEngine Update
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneBackButton.DoAction">
+            <summary>
+            Called on a PointerClick event, can be called manually from another event by a derived class
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneBackButton.Leave">
+            <summary>
+            Leave the current scene
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.SceneTransitionSingleton">
+            <summary>
+            A singleton style SceneTransition Object
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneTransitionSingleton.Transition(Polymorph.Unity.SceneSelector,System.Boolean,System.Boolean)">
+            <summary>
+            Do a scene transition
+            </summary>
+            <param name="picker">Which scene to transition to</param>
+            <param name="waitForContinue">Should the SceneTransition wait for input after the loading is complete</param>
+            <param name="outOnly">Should the transition perform only the second leg of the transition animation</param>
+            <returns>Event block for callers to couple into specific times in the animation</returns>
+        </member>
+        <member name="T:Polymorph.Unity.SceneTransition">
+            <summary>
+            Facilitates transition graphics between scenes
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.SceneTransition.IEventBlock">
+            <summary>
+            Event insertion interface, actions will be called immediately if the event has passed
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneTransition.IEventBlock.OnTransition(System.Action)">
+            <summary>
+            Will be called once the transition reached full overlay
+            </summary>
+            <param name="action">Action to call once event is reached</param>
+            <returns>Self for chaining</returns>
+        </member>
+        <member name="M:Polymorph.Unity.SceneTransition.IEventBlock.OnEnd(System.Action)">
+            <summary>
+            Will be called once the transition has finished
+            </summary>
+            <param name="action">Action to call once event is reached</param>
+            <returns>Self for chaining</returns>
+        </member>
+        <member name="F:Polymorph.Unity.SceneTransition.onStart">
+            <summary>
+            Called when a transition has been requested, will not be called if outOnly is true
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneTransition.onTransition">
+            <summary>
+            Called when the transition has reached the half way point, just before the transition happens
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneTransition.onEnd">
+            <summary>
+            Called when the transition has finished the the overlay is fully transparent again
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneTransition.fader">
+            <summary>
+            The fader that facilitates the animation of the overlay blackout
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneTransition.waitObject">
+            <summary>
+            Object that will be enabled after the loading has finished and the waitForContinue is true
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneTransition.loadingObject">
+            <summary>
+            Object that will enabled during the main scene transition sequence
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneTransition.Transition(Polymorph.Unity.SceneSelector,System.Boolean,System.Boolean)">
+            <summary>
+            Do a scene transition
+            </summary>
+            <param name="picker">Which scene to transition to</param>
+            <param name="waitForContinue">Should the SceneTransition wait for input after the loading is complete</param>
+            <param name="outOnly">Should the transition perform only the second leg of the transition animation</param>
+            <returns>Event block for callers to couple into specific times in the animation</returns>
+        </member>
+        <member name="M:Polymorph.Unity.SceneTransition.Continue">
+            <summary>
+            Used by the blackout to indicate tat the user interacted with it
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.SceneViewModel">
+            <summary>
+            A ViewModel to help coordinate scene transitions
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.SceneViewModel.TransitionData">
+            <summary>
+            Data about how a scene transition should happen
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneViewModel.TransitionData.outOnly">
+            <summary>
+            Perform only the second leg of the animation
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneViewModel.TransitionData.waitForContinue">
+            <summary>
+            Before performing the second leg, the transition should wait for user input
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneViewModel.TransitionData.onTransition">
+            <summary>
+            Called just before the scene loading starts, after the first leg
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.SceneViewModel.TransitionData.onEnd">
+            <summary>
+            Called aftere the second leg of the animation finishes
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.TransitionData.#ctor">
+            <summary>
+            Construstor with the default values
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.TransitionData.#ctor(Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Copy contructor
+            </summary>
+            <param name="other"></param>
+        </member>
+        <member name="T:Polymorph.Unity.SceneViewModel.SinlgeHistory`1">
+            <summary>
+            <para>A history stack that allows an item to appear only once in the stack, if an item is inserted tat is already in</para>
+            <para>the stack, the stack will reset to the state it was when that item was first inserted</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Polymorph.Unity.SceneViewModel.SinlgeHistory`1.Count">
+            <summary>
+            How many items are in the stack
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.SinlgeHistory`1.#ctor">
+            <summary>
+            Standard constructor
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.SinlgeHistory`1.Push(`0)">
+            <summary>
+            Add item into stack
+            </summary>
+            <param name="loc">The item to add</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.SinlgeHistory`1.Pop">
+            <summary>
+            Remove the top most item from the stack
+            </summary>
+            <returns>The item removed</returns>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.SinlgeHistory`1.Peek">
+            <summary>
+            Get the top most item from the stack without removing it
+            </summary>
+            <returns>The top most item</returns>
+        </member>
+        <member name="F:Polymorph.Unity.SceneViewModel.locked">
+            <summary>
+            Indicates that a Transition is in progress, another transition should not be requested as it will be denied
+            </summary>
+        </member>
+        <member name="E:Polymorph.Unity.SceneViewModel.onSceneChanged">
+            <summary>
+            Called when the scene has changed, called mid transition
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.#ctor(Polymorph.Unity.SceneTransition,Polymorph.Unity.SceneSelector)">
+            <summary>
+            Construct a new SceneViewModel
+            </summary>
+            <param name="sceneTransition">The SceneTransition that will handle the transition animation</param>
+            <param name="firstScene">The first scene in program, placed at the root of the history, should be the scene from which the SceneViewModel is created</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.SetEndOfTheLine(Polymorph.Unity.SceneSelector)">
+            <summary>
+            Sets the scene that will quit the application automatically on a GoBack()
+            </summary>
+            <param name="scene">The end scene</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.GoTo(Polymorph.Unity.SceneSelector,Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Transition to a specific scene
+            </summary>
+            <param name="picker">The scene to transition to</param>
+            <param name="data">Data for controlling the transition</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.GoTo(System.Int32,Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Transition to a scene based on index, ordered by the list given in the constructor, should be implemented in the inheriting class
+            </summary>
+            <param name="index">Index of the scene to transition to</param>
+            <param name="data">Data for controlling the transition</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.GoBack(Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Go to a previous scene in the history
+            </summary>
+            <param name="data">Data for controlling the transition</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.ResetScene(Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Load the current scene in the history again
+            </summary>
+            <param name="data">Data for controlling the transition</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.CurrentScene">
+            <summary>
+            Get the current top scene
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel.GetCurrentScene(System.Collections.Generic.List{Polymorph.Unity.SceneSelector})">
+            <summary>
+            Get the SceneSelector pointing to the currently loaded scene
+            </summary>
+            <param name="knownScenes">All the known scenes</param>
+            <returns>The known scene that points to the current scene</returns>
+        </member>
+        <member name="T:Polymorph.Unity.SceneViewModel`1">
+            <summary>
+            A generic SceneViewModel that couples SceneSelectors with an enum based alias for easy reference
+            </summary>
+            <typeparam name="T">The enum to used as an alias</typeparam>
+        </member>
+        <member name="P:Polymorph.Unity.SceneViewModel`1.currentScene">
+            <summary>
+            The top scene in the history
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel`1.#ctor(System.Collections.Generic.List{`0},System.Collections.Generic.List{Polymorph.Unity.SceneSelector},Polymorph.Unity.SceneSelector,Polymorph.Unity.SceneTransition)">
+            <summary>
+            A Constructor that couples SceneSelectors with aliases
+            </summary>
+            <param name="aliases">The list that denotes the aliases of the SceneSelectors given</param>
+            <param name="scenes">The SceneSelectors that denote all the scenes that can be transitioned to</param>
+            <param name="rootScene">The first scene in the program</param>
+            <param name="switcher">The SceneTransition object that handles the animation</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel`1.GoTo(`0,Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Transition to an aliased scene
+            </summary>
+            <param name="alias">The aliases of the scene to transition to</param>
+            <param name="data">Data for controlling the transition</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel`1.GoTo(System.Int32,Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Transition to a scene denoted by an index
+            </summary>
+            <param name="index">The index of the scene to transition to</param>
+            <param name="data">Data for controlling the transition</param>
+        </member>
+        <member name="M:Polymorph.Unity.SceneViewModel`1.GoBack(Polymorph.Unity.SceneViewModel.TransitionData)">
+            <summary>
+            Go to a previous scene in the history
+            </summary>
+            <param name="data">Data for controlling the transition</param>
+        </member>
+    </members>
+</doc>

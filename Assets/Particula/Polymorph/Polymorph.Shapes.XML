@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Polymorph.Shapes</name>
+    </assembly>
+    <members>
+        <member name="P:Polymorph.Shapes.BezierTCurve.Item(System.Int32)">
+            <summary>
+            I Values:
+                0: Start Point
+                1: Start Tangent
+                2: End Tangent
+                3: End Point
+            </summary>
+        </member>
+        <member name="P:Polymorph.Shapes.BezierDCurve.Item(System.Int32)">
+            <summary>
+            I Values:
+                0: Start Point
+                1: Start Tangent
+                2: End Tangent
+                3: End Point
+            </summary>
+        </member>
+    </members>
+</doc>

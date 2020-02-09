@@ -1,0 +1,526 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Polymorph.DataTools</name>
+    </assembly>
+    <members>
+        <member name="F:Polymorph.Primitives.ControledPoint.v">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="F:Polymorph.Primitives.ControledPoint.pc">
+            <summary>
+            Preceding Control
+            </summary>
+        </member>
+        <member name="F:Polymorph.Primitives.ControledPoint.sc">
+            <summary>
+            Succeeding Control
+            </summary>
+        </member>
+        <member name="M:Polymorph.Primitives.ControledPoint.ControlsBySpline(Polymorph.Primitives.Vector3,Polymorph.Primitives.Vector3,System.Double)">
+            <summary>
+            Changes the controls to fit the preceding point and succeeding point, which fits on as spline
+            </summary>
+            <param name="p0"></param>
+            <param name="p1"></param>
+            <param name="mult"></param>
+        </member>
+        <member name="T:Polymorph.DataTools.Dynamics.IPathedNode">
+            <summary>
+            An interface for objects that will receive their path when a PathFollower follows a path that traverses them
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.IPathedNode.SetPath(System.String)">
+            <summary>
+            Called by PathFollower when the object is reached using some path
+            </summary>
+            <param name="path">The path to this object from the last root traversed</param>
+        </member>
+        <member name="T:Polymorph.DataTools.Dynamics.PathFollower">
+            <summary>
+            Specialises the generic PathFollower to use a Json dictionary (string, object) as the base object to follow
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower.#ctor">
+            <summary>
+            Creates a PathFollower ready for following a path
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower.#ctor(System.String,System.Object)">
+            <summary>
+            Creates a PathFollower and follows a path on an object, equivilant to creating a PathFollower() and calling Follow(string, object, bool)
+            </summary>
+            <param name="path">The path to follow, Json type path i.e. house.kitchen.fridge.id</param>
+            <param name="obj">The root object on which the path is to be followed</param>
+            <param name="create">Should the path be created if it does not exist</param>
+        </member>
+        <member name="T:Polymorph.DataTools.Dynamics.PathFollower`1">
+            <summary>
+            Follows a path given to it on an object that derives from IDictionary and spits out the object at the end of the path
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Polymorph.DataTools.Dynamics.PathFollower`1.currentPath">
+            <summary>
+            The current path that was followed
+            </summary>
+        </member>
+        <member name="F:Polymorph.DataTools.Dynamics.PathFollower`1.rootObject">
+            <summary>
+            The root object on which the current path was followed
+            </summary>
+        </member>
+        <member name="F:Polymorph.DataTools.Dynamics.PathFollower`1.isAssignable">
+            <summary>
+            Denotes if this path can be assigned to
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Dynamics.PathFollower`1.pathExists">
+            <summary>
+            Denotes if the path to the object exists
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Dynamics.PathFollower`1.exists">
+            <summary>
+            Denotes if an object at the end of the path exists
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Dynamics.PathFollower`1.count">
+            <summary>
+            Node count in this path
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.#ctor">
+            <summary>
+            Creates a PathFollower, call Follow(string, object) to follow a path
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.#ctor(System.String,System.Object)">
+            <summary>
+            Creates a PathFollower and follows a path on an object, equivilant to creating a PathFollower() and calling Follow(string, object, bool)
+            </summary>
+            <param name="path">The path to follow, Json type path i.e. house.kitchen.fridge.id</param>
+            <param name="obj">The root object on which the path is to be followed</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.Follow(System.String,System.Object)">
+            <summary>
+            Follows a path on an object
+            </summary>
+            <param name="path">The path to follow, Json type path i.e. house.kitchen.fridge.id</param>
+            <param name="obj">The root object on which the path is to be followed</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.GetValue">
+            <summary>
+            Get the value at the end of the current path
+            </summary>
+            <returns>Object at the end of the current path</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.GetValue``1">
+            <summary>
+            Get a reference at the end of the current path
+            </summary>
+            <typeparam name="RetT">The type of the reference</typeparam>
+            <returns>Refernce of type RetT to an object at the end of the current path</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.SetValue(System.Object)">
+            <summary>
+            Set the value at the end of the current path
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.GetName(System.Int32)">
+            <summary>
+            Returns the name of a node at a specific index
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Dynamics.PathFollower`1.ToString">
+            <summary>
+            Standard ToString, prints all the data in the follower 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Polymorph.DataTools.RangeArray`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">T will be compared to T and float</typeparam>
+        </member>
+        <member name="T:Polymorph.DataTools.RollingArray`1">
+            <summary>
+            A rolling array must always be "rolling" forward, meaning from one call to the other
+            of Advance, the value has to grow, or the internal structure of the array will go haywire
+            </summary>
+            <typeparam name="T">T will be compared to T and float</typeparam>
+        </member>
+        <member name="T:Polymorph.DataTools.Timeline">
+            <summary>
+            Holds a list of events ordered by their time, with simple access methods
+            to retrieve data based on time
+            </summary>
+        </member>
+        <member name="T:Polymorph.DataTools.Timeline.Event">
+            <summary>
+            Base class for events that will be added to the timeline
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Timeline.Item(System.Single)">
+            <summary>
+            Return an Event at a specific timestamp, timestamp has to be 100% exact
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Timeline.Item(System.Int32)">
+            <summary>
+            Return an event at a spesific index
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Timeline.count">
+            <summary>
+            Amount of timestamps in the timeline
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Timeline.start">
+            <summary>
+            First (chronologically) timestamp in the timeline
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Timeline.end">
+            <summary>
+            Last (chronologically) timestamp in the timeline
+            </summary>
+        </member>
+        <member name="P:Polymorph.DataTools.Timeline.Item(System.Single,System.Single)">
+            <summary>
+            Returns all the events between two timestamps (inclusivly), timestamps dont have to be exact
+            </summary>
+            <param name="s">Start timestamp</param>
+            <param name="e">End timestamp</param>
+            <returns>Event array</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Timeline.Add(System.Single,System.Object)">
+            <summary>
+            Add event to the timeline with a generic metadata object at a specific time
+            </summary>
+            <param name="time">Time to place the event at</param>
+            <param name="meta">Metadata object to place at that time</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Timeline.Remove(Polymorph.DataTools.Timeline.Event)">
+            <summary>
+            Remove specific event from the timeline, if it exists
+            </summary>
+            <param name="e">Event to be removed</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Timeline.RemoveTime(System.Single)">
+            <summary>
+            Remove an event at a spesific timestamp
+            </summary>
+            <param name="time">Timestamp at which there should be an event</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Timeline.RemoveAt(System.Int32)">
+            <summary>
+            Remove an event at a spesific index
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Polymorph.DataTools.Timeline.Segmented``1">
+            <summary>
+            Split the timeline into sub timelines based on a spesific event type, excluding events of the segmentation type
+            </summary>
+            <typeparam name="T">Event type by which to segment the timeline</typeparam>
+            <returns>New timeline with all the events in between the segmnets</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Timeline.TimeOf``1(System.Single@,System.Single)">
+            <summary>
+            Find the next event in the timeline of a spesific type
+            </summary>
+            <typeparam name="T">The type to look for</typeparam>
+            <param name="time">The time of the found event</param>
+            <param name="startTime">Alternate start position, will exclude the events at the exact alternate timestamp</param>
+            <returns>If an event of the spesific type was found</returns>
+        </member>
+        <member name="T:Polymorph.DataTools.LocalDB">
+            <summary>
+            A base class for Local Databases that handles reading and writing data to a database file
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.#ctor(System.String)">
+            <summary>
+            Create a database access instance.
+            </summary>
+            <param name="path">The path to the database file</param>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.Commit">
+            <summary>
+            Commit the current data in this instance to the file
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.Set(System.String,System.Object)">
+            <summary>
+            Set a value on an arbitrary path in this instance, call Commit() to save the changes to the file
+            </summary>
+            <param name="path">Path to the object to set</param>
+            <param name="val">The object to set</param>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.Add(System.String,System.Double)">
+            <summary>
+            Add to a value, implementation removed for now.
+            </summary>
+            <param name="path">Path to the object to add to</param>
+            <param name="val">The value to add</param>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.Get(System.String)">
+            <summary>
+            Get an object on an arbitrary path on this instance
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.Get(System.String,System.Type,System.Object)">
+            <summary>
+            Get an object of a specific type and cast it to that type
+            </summary>
+            <param name="path">Path to the object</param>
+            <param name="type">The type that should be returned</param>
+            <param name="proto">A proto object to deserialize to, if no proto is given, a new object will be created</param>
+            <returns>Deserialized object at the path of the given type</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.Get``1(System.String)">
+            <summary>
+            Generic version of Get(string, Type, object), creates a new object of type T
+            </summary>
+            <typeparam name="T">The type of the object at the path</typeparam>
+            <param name="path">Path to the object</param>
+            <returns>Deserialized object at the path</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.LocalDB.Get``1(System.String,``0)">
+            <summary>
+            Generic version of Get(string, Type, object), does not create a object
+            </summary>
+            <typeparam name="T">The type of the object at the path</typeparam>
+            <param name="path">Path to the object</param>
+            <param name="proto">Prototype object into which the data should be inserted</param>
+            <returns>Deserialized object at the path</returns>
+        </member>
+        <member name="T:Polymorph.DataTools.Tokenizer`1">
+            <summary>
+            A simple regex based tokenizer
+            </summary>
+            <typeparam name="T">The enum type to be used as the returned logic on matches</typeparam>
+            <author>Victor Belski</author>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.#ctor(System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            A simple constructor, use AddRule(string, T) to add all rules then Load(string) to load the stream
+            </summary>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.AddRule(Polymorph.DataTools.Rule{`0})">
+            <summary>
+            Add a rule derived from Rule class
+            </summary>
+            <param name="rule">The rule to be added</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.AddSimpleRule(System.String,`0)">
+            <summary>
+            Adds a simple rule to be used while tokenizing.
+            </summary>
+            <param name="r">Regex form of the rule to be added</param>
+            <param name="l">Logic to be returned on a match of this rule</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.AddComplexRule(System.String,System.String,System.String,`0)">
+            <summary>
+            Adds a complex rule to used while tokenizing, the captured value will only include the characters
+            matching the rule, without the prefix and the suffix
+            </summary>
+            <param name="p">Regex form of the prefix</param>
+            <param name="r">Regex form of the rule to be captured</param>
+            <param name="s">Regex form of the suffix</param>
+            <param name="l">Logic to be returned on a match of this rule</param>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.NextToken">
+            <summary>
+            Reads the next token in the stream, placing the token value in currentToken, a null token implies\n
+            the end has been reached
+            </summary>
+            <returns>true is a match is found, false is no matches were found</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.ReadCurrent">
+            <summary>
+            Reads the contents of the current match to currentToken
+            </summary>
+            <returns>true is a match is found, false is no matches were found</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.CreateRegex">
+            <summary>
+            Intializes the Regex class to for work with the current rules
+            </summary>
+            <returns>true is a match is found, false is no matches were found</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.Tokenizer`1.Restart">
+            <summary>
+            Start reading the stream from the current position
+            </summary>
+            <returns>true is a match is found, false is no matches were found</returns>
+        </member>
+        <member name="T:Polymorph.DataTools.ValueRecorder`1">
+            <summary>
+            Saves a set of value based on who is bigger
+            </summary>
+            <typeparam name="T">The type of value recorded</typeparam>
+        </member>
+        <member name="P:Polymorph.DataTools.ValueRecorder`1.Item(System.String)">
+            <summary>
+            Get a value from the recorder
+            </summary>
+            <param name="name">The name of the value</param>
+            <returns>The value if exists, defaultValue if it doesnt</returns>
+        </member>
+        <member name="M:Polymorph.DataTools.ValueRecorder`1.#ctor(`0)">
+            <summary>
+            Constructs a value recorder
+            </summary>
+            <param name="defaultValue">The value returned if a name doesnt exist in the recorder</param>
+        </member>
+        <member name="M:Polymorph.DataTools.ValueRecorder`1.Record(System.String,`0)">
+            <summary>
+            Remembers the value if it is bigger then the known value
+            </summary>
+            <param name="name">Name of the value</param>
+            <param name="val">The value to be recorded</param>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.DataTools.ValueRecorder`1.Compare(`0,`0)">
+            <summary>
+            Determins how to compare which value is bigger
+            </summary>
+            <param name="oldV">The value in the recorder</param>
+            <param name="newV">The new value to record</param>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.DataTools.ValueRecorder`1.ToString">
+            <summary>
+            Standard ToString override
+            </summary>
+            <returns>A String</returns>
+        </member>
+        <member name="T:Polymorph.PMath">
+            <summary>
+            Polymorph Math\n
+            Standard math functions for internal and external use
+            </summary>
+        </member>
+        <member name="M:Polymorph.PMath.Lerp(System.Single,System.Single,System.Single)">
+            <summary>
+            <para>Linear interpolation between from and to using t.</para>
+            <para>if t is 0 then "from" is returned, if t is 1 then "to" is returned.</para>
+            <para>any other value of t will return some value between "from" and "to"</para>
+            </summary>
+            <returns>Value between from and to, based to t</returns>
+        </member>
+        <member name="M:Polymorph.PMath.Lerp(System.Double,System.Double,System.Double)">
+            <summary>
+            <para>Linear interpolation between from and to using t.</para>
+            <para>if t is 0 then "from" is returned, if t is 1 then "to" is returned.</para>
+            <para>any other value of t will return some value between "from" and "to"</para>
+            </summary>
+            <returns>Value between from and to, based on t</returns>
+        </member>
+        <member name="M:Polymorph.PMath.InLerp(System.Single,System.Single,System.Single)">
+            <summary>
+            <para>Inverse linear interpolation, given any value the function will calculate</para>
+            <para>the t for that value as though it was interpolated.</para>
+            <para>if "val" is "from" then 0 is retuned, if "val" is "to" then 1 is returned.</para>
+            <para>any other value will return the ration that "val" sits in between "from" and "to"</para>
+            </summary>
+            <returns>Ratio between "from" and "to" where "val" sits</returns>
+        </member>
+        <member name="M:Polymorph.PMath.InLerp(System.Double,System.Double,System.Double)">
+            <summary>
+            <para>Inverse linear interpolation, given any value the function will calculate</para>
+            <para>the t for that value as though it was interpolated.</para>
+            <para>if "val" is "from" then 0 is retuned, if "val" is "to" then 1 is returned.</para>
+            <para>any other value will return the ration that "val" sits in between "from" and "to"</para>
+            </summary>
+            <returns>Ratio between "from" and "to" where "val" sits</returns>
+        </member>
+        <member name="M:Polymorph.PMath.Rebase(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Transform bases, takes "value" in the source range and transforms it into
+            destination range
+            </summary>
+            <param name="fMin">Source range minimum</param>
+            <param name="fMax">Source range maximum</param>
+            <param name="value">Value in source range</param>
+            <param name="tMin">Destination range minimum</param>
+            <param name="tMax">Destination range maximum</param>
+            <returns>Value in destination range</returns>
+        </member>
+        <member name="M:Polymorph.PMath.Rebase(System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Transform bases, takes "value" in the source range and transforms it into
+            destination range
+            </summary>
+            <param name="fMin">Source range minimum</param>
+            <param name="fMax">Source range maximum</param>
+            <param name="value">Value in source range</param>
+            <param name="tMin">Destination range minimum</param>
+            <param name="tMax">Destination range maximum</param>
+            <returns>Value in destination range</returns>
+        </member>
+        <member name="M:Polymorph.PMath.Clamp(System.Single,System.Single,System.Single)">
+            <summary>
+            Binds value to the given range
+            </summary>
+        </member>
+        <member name="M:Polymorph.PMath.Clamp(System.Double,System.Double,System.Double)">
+            <summary>
+            Binds value to the given range
+            </summary>
+        </member>
+        <member name="M:Polymorph.PMath.Clamp01(System.Single)">
+            <summary>
+            Binds value to the range 0 - 1
+            </summary>
+        </member>
+        <member name="M:Polymorph.PMath.Clamp01(System.Double)">
+            <summary>
+            Binds value to the range 0 - 1
+            </summary>
+        </member>
+        <member name="T:Polymorph.Serialization.DoNotSerilize">
+            <summary>
+            Defined on a field or a property so that the serialization system would ignore it
+            </summary>
+        </member>
+        <member name="T:Polymorph.Serialization.SerializeProperties">
+            <summary>
+            Defined on a class so that the serialization system would also serialize the properties in it
+            </summary>
+        </member>
+        <member name="T:MiniJSON.Json">
+             <summary>
+             This class encodes and decodes JSON strings.
+             Spec. details, see http://www.json.org/
+            
+             JSON uses Arrays and Objects. These correspond here to the datatypes IList and IDictionary.
+             All numbers are parsed to doubles.
+             </summary>
+        </member>
+        <member name="M:MiniJSON.Json.Deserialize(System.String)">
+            <summary>
+            Parses the string json into a value
+            </summary>
+            <param name="json">A JSON string.</param>
+            <returns>An List&lt;object&gt;, a Dictionary&lt;string, object&gt;, a double, an integer,a string, null, true, or false</returns>
+        </member>
+        <member name="M:MiniJSON.Json.Serialize(System.Object)">
+            <summary>
+            Converts a IDictionary / IList object or a simple type (string, int, etc.) into a JSON string
+            </summary>
+            <param name="json">A Dictionary&lt;string, object&gt; / List&lt;object&gt;</param>
+            <returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
+        </member>
+    </members>
+</doc>

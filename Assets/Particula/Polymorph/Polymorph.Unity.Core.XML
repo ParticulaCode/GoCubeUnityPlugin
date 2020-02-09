@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Polymorph.Unity.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Polymorph.Unity.Core.AquireDriveThroughSemaphore">
+            <summary>
+            Aquire a semaphore that kills the currently running coroutine, and let this coroutine through
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.Core.AquireFirewallSemaphore">
+            <summary>
+            Aquire a semaphore that kills this coroutine, if another one is running
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.Core.CoroutineHolder">
+            <summary>
+            All coroutines created by AdvancedBehavoiurs will run on a seperate object
+            with this component attached to it
+            </summary>
+        </member>
+    </members>
+</doc>

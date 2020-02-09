@@ -1,0 +1,476 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Polymorph.Unity.AnimatedUI</name>
+    </assembly>
+    <members>
+        <member name="T:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour">
+            <summary>
+            Base class for all animated ui components
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.#ctor">
+            <summary>
+            The time that will be used if no time was supplied during the animation call
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            Call the animtion to bring the object in to view
+            </summary>
+            <param name="time">The amount of time the animation should take</param>
+            <param name="curve">The curve used to customize the animation</param>
+            <param name="callback">Callback to when the animation has finished (Not always at the end of the time)</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,System.Action)">
+            <summary>
+            Shorthand for <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/> without the curve
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Action)">
+            <summary>
+            Shorthand for <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/> without the curve and time
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In">
+            <summary>
+            Action like shorthand for <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            Call the animtion to bring the object out of view
+            </summary>
+            <param name="time">The amount of time the animation should take</param>
+            <param name="curve">The curve used to customize the animation</param>
+            <param name="callback">Callback to when the animation has finished (Not always at the end of the time)</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,System.Action)">
+            <summary>
+            Shorthand for <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/> without the curve
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Action)">
+            <summary>
+            Shorthand for <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/> without the curve and time
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out">
+            <summary>
+            Action like shorthand for <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.GetCurveValue(System.Single,System.Single,UnityEngine.AnimationCurve)">
+            <summary>
+            Get the value on the curve, taking in to account repeat
+            </summary>
+            <param name="time">The current time to evaluate</param>
+            <param name="totalTime">The total time of the animation</param>
+            <param name="curve">The curve which should be evaluated</param>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.SetDefaultCurve(Polymorph.Unity.AnimatedUI.BuiltIn)">
+            <summary>
+            Used internally to generate the defalut AnimationCurve based on <see cref="!:GetStandardCurve(BuiltIn)"/>
+            </summary>
+            <param name="curve">The curve type to generate</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Reset">
+            <summary>
+            Used internally by unity when the object is created in the editor
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.AnimatorUI">
+            <summary>
+            Operates as an interface between AnimatedUIBehaviour and a Unity Animator Controller 
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.AnimatorUI.subject">
+            <summary>
+            The Animator that will receive the events
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatorUI.Awake">
+            <summary>
+            Unity Awake entry point
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatorUI.OnDestroy">
+            <summary>
+            Unity OnDestroy entry point
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatorUI.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.AnimatorUI.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.CurveType">
+            <summary>
+            Used internally by <see cref="T:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour"/> to define curve aquasition type
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.CurveType.BuiltIn">
+            <summary>
+            <para>Use the <see cref="!:AnimatedUIBehaviour.GetStandardCurve(BuiltIn)"/> to generate</para>
+            <para>A standard curve</para>
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.CurveType.Curve">
+            <summary>
+            Use the curve directly created in the editor
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.CurveType.CurveLibrary">
+            <summary>
+            Use a curve from a <see cref="F:Polymorph.Unity.AnimatedUI.CurveType.CurveLibrary"/> 
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.BuiltIn">
+            <summary>
+            <para>Curve type definition used by <see cref="!:AnimatedUIBehaviour.GetStandardCurve(BuiltIn)"/></para>
+            <para>to speficy which curve to generate</para>
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.BuiltIn.Linear">
+            <summary>
+            A line which between (0, 0) and (1, 1)
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.BuiltIn.Lerp">
+            <summary>
+            A curve resembling a quarter circle starting (decreasing delta towards the end)
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.BuiltIn.Overshoot">
+            <summary>
+            A curve that lerps to (0.5, 1.20) lerps back to (1, 1)
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.BuiltIn.Undershoot">
+            <summary>
+            A curve that lerps to (0.5, 0.8) then lerps to (1, 1)
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.BuiltIn.Sinusoidal">
+            <summary>
+            A sinosoidal motion that starts at (0, 0) does a full step throuh (0.25, 1) and (0.75, -1) then abck to (1, 0)
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.BuiltIn.Jagged">
+            <summary>
+            A linear motion through the points (0, 0), (0.25, 1), (0.75, -1) and (1, 0)
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.FadingUI">
+            <summary>
+            Animation for UI that uses a <see cref="T:UnityEngine.CanvasGroup"/> to animate a fade in and fade out
+            </summary>
+        </member>
+        <member name="P:Polymorph.Unity.AnimatedUI.FadingUI.group">
+            <summary>
+            The <see cref="T:UnityEngine.CanvasGroup"/> used by this animation behaviour
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.FadingUI.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.FadingUI.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.FadingUI.FadeToAlpha(System.Single,System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            Fades the element to a specific alpha state
+            </summary>
+            <param name="alpha">The destination</param>
+            <param name="time">The time it should take</param>
+            <param name="curve">The curve to use for extra customization</param>
+            <param name="callback">A callback for when the animation finishes</param>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.HandWavingUI">
+            <summary>
+            An animation that rotates the object back and forth, ending in the same spot
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.HandWavingUI.deflection">
+            <summary>
+            The degrees of the deflection from its static point during the animation
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.HandWavingUI.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.HandWavingUI.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.HandWavingUI.Reset">
+            <summary>
+            Unity Reset entry point
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.MultiElement">
+            <summary>
+            <para>A single element that calls <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In"/> and <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out"/></para>
+            <para>on all the elements defined in its chain</para>
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.MultiElement.chain">
+            <summary>
+            The chain to call when and In or Out is requested
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.MultiElement.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            The callback is raised after all elements have finished
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.MultiElement.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            The callback is raised after all elements have finished
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.PolyCurve.GetStandardCurve(Polymorph.Unity.AnimatedUI.BuiltIn)">
+            <summary>
+            <para>Used internaly to create the static standard curves,</para>
+            <para>used by Polymorph.Unity.AnimatedUI.Editor.AnimatedUIBehaviourDrawer</para>
+            </summary>
+            <param name="type">Which curve to generate</param>
+            <returns>AnimationCurve representation of the curve requested</returns>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.PolyCurve.time">
+            <summary>
+            The Curve that will be used if no curve was supplied during the animation call
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.ScalingUI">
+            <summary>
+            An animation that pops in and out of the single point
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ScalingUI.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ScalingUI.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ScalingUI.Appear(System.Single,System.Action)">
+            <summary>
+            Change scale to (1, 1, 1)
+            </summary>
+            <param name="time">The time that the animation should take</param>
+            <param name="callback">Callback for when the animation finishes</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ScalingUI.Disappear(System.Single,System.Action)">
+            <summary>
+            Change scale to (0, 0, 0)
+            </summary>
+            <param name="time">The time that the animation should take</param>
+            <param name="callback">Callback for when the animation finishes</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ScalingUI.Reset">
+            <summary>
+            Unity Reset entry point
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.ShrinkingUI">
+            <summary>
+            An animation the chagnes the size based on dynamic UnityEngine.UI properties
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.ShrinkingUI.Constraint">
+            <summary>
+            Based on what should the element determin the size to take
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.Constraint.Static">
+            <summary>
+            Use origSize on this element
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.Constraint.Dynamic">
+            <summary>
+            <para>Use <see cref="T:UnityEngine.UI.LayoutUtility"/> to determin the min/preffered/flexible</para>
+            <para>based LayoutProperties unity provides</para>
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.Constraint.Sourced">
+            <summary>
+            Use another RectTransform to determin the size
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.ShrinkingUI.DynamicConstraint">
+            <summary>
+            <para>The UnityEngine.Layout constraint to be used when guaging the size that the element should take.</para>
+            <para>Used exclusivle with <see cref="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.Constraint.Dynamic"/></para>
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.DynamicConstraint.None">
+            <summary>
+            Do not change
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.DynamicConstraint.Min">
+            <summary>
+            LayoutElement.Min
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.DynamicConstraint.Preffered">
+            <summary>
+            LayoutElement.Preffered
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.ShrinkingUI.DynamicConstraint.Flexible">
+            <summary>
+            LayoutElement.Flexible
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ShrinkingUI.SetSize">
+            <summary>
+            Set the current sizeDelta as the original size
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ShrinkingUI.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.In(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ShrinkingUI.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            <see cref="M:Polymorph.Unity.AnimatedUI.AnimatedUIBehaviour.Out(System.Single,UnityEngine.AnimationCurve,System.Action)"/>
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.ShrinkingUI.Reset">
+            <summary>
+            Used by the constructor to setup the curve when this element is being created initially
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.AnimatedUI.SlidingUI">
+            <summary>
+            A dynamic animation component that moves this element in and out of its parent
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.AnimatedUI.SlidingUI.hideDirection">
+            <summary>
+            Direction where this element will move to when its hidden
+            </summary>
+        </member>
+        <member name="P:Polymorph.Unity.AnimatedUI.SlidingUI.distanceFromOrigin">
+            <summary>
+            Get or set the position based on the origin point
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.In(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            Used by AnimatedUIBehaviour to apply the "Get in" Animation
+            </summary>
+            <param name="time">Time the animation should take</param>
+            <param name="curve">Curve to be used when applying the animation</param>
+            <param name="callback">Callback when the animation finishes</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.Out(System.Single,UnityEngine.AnimationCurve,System.Action)">
+            <summary>
+            Used by AnimatedUIBehaviour to apply the "Get out" Animation
+            </summary>
+            <param name="time">Time the animation should take</param>
+            <param name="curve">Curve to be used when applying the animation</param>
+            <param name="callback">Callback when the animation finishes</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveToOrigin(System.Action)">
+            <summary>
+            <para>Move element to the original position defined in the element, time will be calculated</para>
+            <para>using the default time set on the element</para>
+            </summary>
+            <param name="callback">A callback to when the move has finished</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveToOrigin(System.Single,System.Action)">
+            <summary>
+            <para>Move element to the original position defined in the element</para>
+            </summary>
+            <param name="time">The time the transition should take</param>
+            <param name="callback">A callback to when the move has finished</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveTo(Polymorph.Unity.Core.Direction,System.Action)">
+            <summary>
+            <para>Move the element to an arbitrary off parent direction, the time will be calculated</para>
+            <para>using the default time set on the element</para>
+            </summary>
+            <param name="direction">The off parent direction to move to</param>
+            <param name="callback">A callback to when the move has finished</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveTo(Polymorph.Unity.Core.Direction,System.Single,System.Action)">
+            <summary>
+            Move the element to an arbitrary off parent direction
+            </summary>
+            <param name="direction">The off parent direction to move to</param>
+            <param name="time">The time the transition should take</param>
+            <param name="callback">A callback to when the move has finished</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveTo(UnityEngine.Vector2,System.Action)">
+            <summary>
+            <para>Move the element to an arbitrary anchored position, the time will be calculated</para>
+            <para>using the default time set on the element</para>
+            </summary>
+            <param name="destination">The anchored position to move to</param>
+            <param name="callback">A callback to when the transition has finished</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveTo(UnityEngine.Vector2,System.Single,System.Action)">
+            <summary>
+            Move the element to an arbitrary anchored position
+            </summary>
+            <param name="destination">The anchored position to move to</param>
+            <param name="time">The time the transition should take</param>
+            <param name="callback">A callback to when the transition has finished</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveToImmediate">
+            <summary>
+            Move without animation to origin point
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveToImmediate(Polymorph.Unity.Core.Direction)">
+            <summary>
+            Move without animation to off parent direction
+            </summary>
+            <param name="direction">Off parent direction</param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.MoveToImmediate(UnityEngine.Vector2)">
+            <summary>
+            Move without animation to an arbitrary anchored position
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.StopMovement">
+            <summary>
+            Stops the currently running coroutine, if there is any
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.SetPosition">
+            <summary>
+            Set the reference position where this element is supposed to be usually
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.AnimatedUI.SlidingUI.Reset">
+            <summary>
+            Unity Reset entry point
+            </summary>
+        </member>
+    </members>
+</doc>

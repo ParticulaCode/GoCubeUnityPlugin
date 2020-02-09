@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Polymorph.Unity.MVVM</name>
+    </assembly>
+    <members>
+        <member name="T:Polymorph.Unity.MVVM.DataContext">
+            <summary>
+            <para>Declares view located on the same GameObject to the ViewModelRegistry so that when a ViewModel is
+            available or has changed, the messeges will be recieved by the View</para>
+            <para>Absolute - the DataContext will not consider the parents of the GameObject when determining the decleration
+            path of the views, whatever is written in the path field will be used as the decleration path</para>
+            <para>Non Absolute / Relative - the DataContext will look in the parent GameObjects to find another DataContext,
+            if a parent DataContext is found, then the path will be (parent.path + "." + path)</para>
+            </summary>
+        </member>
+        <member name="F:Polymorph.Unity.MVVM.DataContext.mainPath">
+            <summary>
+            Calculated path of this context, including parent's path if the context is set to non-absolute.
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.DataContext.Awake">
+            <summary>
+            Standard MonoBehaviour.Awake
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.DataContext.OnDestroy">
+            <summary>
+            Standard MonoBehaviour.OnDestroy
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.DataContext.OnTransformParentChanged">
+            <summary>
+            Standard MonoBehaviour.OnTransformParentChanged
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.MVVM.IView">
+            <summary>
+            Interface for views that do not inherit from View
+            </summary>
+        </member>
+        <member name="T:Polymorph.Unity.MVVM.ViewModelRegistry">
+            <summary>
+            A central point where all view models should be registered
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.Subscribe(System.String,System.Action{Polymorph.Unity.MVVM.ViewModel})">
+            <summary>
+            <para>Subscribe to a certain path on the registry, upon subscription and every time that</para>
+            <para>path changes viewmodels, the subscription action will be raised</para>
+            </summary>
+            <param name="path">Path to subscribe to</param>
+            <param name="subscriber">Action that will be called upon changes</param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.Subscribe(System.String,System.Collections.Generic.ICollection{System.Action{Polymorph.Unity.MVVM.ViewModel}})">
+            <summary>
+            <para>Subscribe to a certain path on the registry, upon subscription and every time that</para>
+            <para>path changes viewmodels, the subscription action will be raised</para>
+            </summary>
+            <param name="path">Path to subscribe to</param>
+            <param name="subscribers">Actions that will be called upon changes</param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.Unsubscribe(System.String,System.Action{Polymorph.Unity.MVVM.ViewModel})">
+            <summary>
+            <para>Unsubscribe from a path to stop receiving viewmodel updates</para>
+            </summary>
+            <param name="path">Path to unsubscribe from</param>
+            <param name="subscriber">Subscriber that should be removed</param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.Unsubscribe(System.String,System.Collections.Generic.ICollection{System.Action{Polymorph.Unity.MVVM.ViewModel}})">
+            <summary>
+            <para>Unsubscribe from a path to stop receiving viewmodel updates</para>
+            </summary>
+            <param name="path">Path to unsubscribe from</param>
+            <param name="subscribers">Subscribers that should be removed</param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.DeclareProvider(System.String,Polymorph.Unity.MVVM.ViewModel)">
+            <summary>
+            Register a provider, everyone subscribed to the path will receive a notification of the change
+            </summary>
+            <param name="path">Path to register on</param>
+            <param name="vm">The provider to register</param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.ClearProvider(System.String,Polymorph.Unity.MVVM.ViewModel)">
+            <summary>
+            Clear the ViewModel at the path and all children ViewModels of this path
+            </summary>
+            <param name="path">The path to clear</param>
+            <param name="vm">Optional. if given, will clear only if the ViewModel on the path matches the given ViewModel</param>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.GetProvider(System.String)">
+            <summary>
+            A one time pull of a specific provider
+            </summary>
+            <param name="path">Path of the provider</param>
+            <returns>That provider, if there is one, null in other cases</returns>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.ClearRegistry">
+            <summary>
+            Clears registry of all the models in it
+            </summary>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.DebugToString">
+            <summary>
+            Prints out the registry structure
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Polymorph.Unity.MVVM.ViewModelRegistry.GetPrintable">
+            <summary>
+            Prints out a readable snapshot of the registry
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
